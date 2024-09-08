@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy Question</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        /* Teddy bear peeking from the side with animation */
+        .teddy {
+            position: absolute;
+            right: -120px; /* Initially hidden */
+            top: 40%;
+            width: 150px;
+            height: auto;
+            transition: right 1s ease-in-out;
+        }
+        .teddy img {
+            width: 100%;
+            height: auto;
+        }
+        /* Teddy sliding fully into view */
+        .teddy.show {
+            right: 0;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ff66b2;
+        }
+        #yes-btn, #no-btn {
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 5px;
+        }
+        #yes-btn {
+            background-color: #ff99cc;
+            color: white;
+        }
+        #no-btn {
+            background-color: #ff6666;
+            color: white;
+        }
+        #message {
+            font-size: 22px;
+            color: #ff66b2;
+            display: none;
+            margin-top: 20px;
+        }
+        /* Flowers for yes */
+        .flowers {
+            display: none;
+            width: 50px;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s;
+        }
+        /* Flowers appear with animation */
+        .flowers.show {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        /* Disappointed reaction for no */
+        .disappointed {
+            animation: shake 0.5s;
+            animation-iteration-count: 2;
+        }
+        @keyframes shake {
+            0% { transform: translate(0px, 0px); }
+            25% { transform: translate(-5px, 5px); }
+            50% { transform: translate(5px, -5px); }
+            75% { transform: translate(-5px, 5px); }
+            100% { transform: translate(0px, 0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="question">kya aapko fool chahiye babu👉👈? 💖</div>
+        <button id="yes-btn" onclick="handleYes()">Yes 🎀</button>
+        <button id="no-btn" onclick="handleNo()">No 😒</button>
+        <div id="message"></div>
+    </div>
+
+    <!-- Teddy Bear peeking -->
+    <div class="teddy" id="teddy-container">
+        <img id="teddy" src="teddy.jpg" alt="Peeking Teddy">
+    </div>
+
+    <script>
+        const teddy = document.getElementById('teddy');
+        const message = document.getElementById('message');
+
+        // Show teddy animation when the page loads
+        window.onload = function() {
+            document.getElementById('teddy-container').classList.add('show');
+        };
+
+        function handleYes() {
+            message.style.display = 'block';
+            message.innerHTML = "ajao phir gale lag jaao😋😋😋";
+            teddy.src = 'hug.jpg'; // Change teddy image to hug.jpg
+        }
+
+        function handleNo() {
+            message.style.display = 'block';
+            message.innerHTML = "Huhhh, nvm... 😔";
+            teddy.src = 'disappointed.jpg'; // Change teddy image to disappointed.jpg
+            teddy.classList.add('disappointed'); // Teddy shakes in disappointment
+        }
+    </script>
+
+</body>
+</html>
